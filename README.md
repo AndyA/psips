@@ -1,9 +1,19 @@
 # Live HLS streaming with the Raspberry Pi camera.
 
-The h264 bitstream consists of a series of NALs (Network Address Units).
-Each unit has a type; many contain compressed video data but two, SPS
-and PPS contain parameter about the dimensions of the video (amongst
-other things) that are needed to decode it properly.
+I wanted to use the Raspberry Pi camera to encode video for HLS
+streaming, the format used by iPhones, iPads and many other kinds
+of device. HLS uses h264 encoding for video and AAC for audio.
+
+Unfortunately I couldn't easily discover how to modify raspivid to
+produce videos in the precise format required for HLS. I expect that
+it's possible and that I didn't look hard enough.
+
+The problem is this: the h264 bitstream consists of a series of NAL
+(Network Abstraction Layer) units. Each unit has a type (a unit is
+similar to a packet: just a chunk of data with a header); many contain
+compressed video data but two, SPS and PPS contain parameters about the
+dimensions of the video (amongst other things) that are needed to decode
+it properly.
 
 Apple's HLS HTTP streaming protocol transfers chunks of video and/or
 audio in chunks typically between four and twelve seconds long. Each one
