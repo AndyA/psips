@@ -60,6 +60,8 @@ Or you could use it to add SPS and PPS for an existing file like this:
 $ psips < oldfile.h264 > newfile.h264
 ```
 
+## and it works...
+
 In the example directory there's a shell script, /examples/hls.sh, that
 packages HLS and makes it available for streaming via your webserver.
 
