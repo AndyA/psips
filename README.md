@@ -40,7 +40,13 @@ $ ./setup.sh && ./configure && make && make install
 You use it like this:
 
 ```shell
-  raspivid -w 1280 -h 720 -fps 25 -hf -t 86400000 -b 1800000 -o - | psips > live.h264
+$ raspivid -w 1280 -h 720 -fps 25 -hf -t 86400000 -b 1800000 -o - | psips > live.h264
+```
+
+Or you could use it to add SPS and PPS for an existing file like this:
+
+```shell
+$ psips < oldfile.h264 > newfile.h264
 ```
 
 In the example directory there's a shell script, /examples/hls.sh, that
