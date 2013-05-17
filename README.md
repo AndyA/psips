@@ -105,4 +105,9 @@ ffmpeg -y \
   "live/%08d.ts" < /dev/null 
 ```
 
+At the time of writing that's been successfully streaming live video
+from my Raspberry Pi camera for quite a few hours. And the quality is
+astonishing for such a small camera. I'll link to some once it's
+daylight again and I have something worth sharing.
+
 Andy Armstrong, andy@hexten.net
