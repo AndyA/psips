@@ -44,6 +44,7 @@ To build it on your Raspberry Pi:
 $ sudo apt-get install git build-essential
 $ cd /to/some/work/dir
 $ git clone git@github.com:AndyA/psips.git
+$ cd psips
 $ ./setup.sh && ./configure && make && make install
 ```
 
