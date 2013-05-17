@@ -61,17 +61,18 @@ int main(void) {
     if (got < 0) die("Read error: %m");
     if (got == 0) break;
     for (i = 0; i < (unsigned) got; i++) {
-
       switch (state) {
       case 0x57: /* 0x00000001 */
         type = buf[i] & 0x1F;
         switch (type) {
         case NUT_SPS:
         case NUT_PPS:
-          cps = type == NUT_SPS ? &psbuf[0] : &psbuf[1];
+          /* if we have PPS/SPS record it in the appropriate buffer */
+          cps = &psbuf[type == NUT_SPS ? 0 : 1 ];
           cps->pos = 0;
           break;
         case NUT_CODED_SLICE_IDR:
+          /* If we have an IDR (key) frame push the stored SPS/PPS out in front of it */
           if (!cps) {
             got -= push_out(&out, &buf[i] - out);
             for (j = 0; j < 2; j++)
@@ -79,22 +80,31 @@ int main(void) {
           }
 
         default:
+          /* Anything other than SPS/PPS: stop recording */
           cps = NULL;
           break;
         }
         break;
       }
+      /* state of last four bytes packed into one byte; two bits for unseen/zero/over
+       * one/one (0..3 respectively).
+       */
       state = (state << 2) | (buf[i] == 0x00 ? 1 : buf[i] == 0x01 ? 3 : 2);
       if (cps) {
         if (cps->pos == sizeof(cps->buf)) {
           fprintf(stderr, "Warning: SPS/PPS overrun!\n");
-          /* discard and forget about it */
+          /* discard and forget about it. SPS/PPS are quite small -
+           * if this buffer fills it's more likely that we're being
+           * given something other than h264 than that the SPS or PPS is
+           * that large. 
+           */
           cps->pos = 0;
           cps = NULL;
         }
         cps->buf[cps->pos++] = buf[i];
       }
     }
+    /* push whatever is left at the end */
     push_out(&out, got);
   }
 
