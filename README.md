@@ -27,7 +27,7 @@ is playable.
 
 ## psips
 
-The problem can be fixed by passing the h264 bit stream through a filter which
+The problem can be fixed by passing the h264 bit stream through a filter that
 
 * stores any SPS and PPS NALs it sees in the stream
 * places a copy of the most recent SPS and PPS just before any IDR (key) frames.
