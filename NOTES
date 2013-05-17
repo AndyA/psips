@@ -1,0 +1,2 @@
+Global clock / frame count
+Messages flow with frames / are delivered frame-synchronously.
