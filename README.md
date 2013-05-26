@@ -41,9 +41,9 @@ pair - which is exactly what we want.
 To build it on your Raspberry Pi:
 
 ```shell
-$ sudo apt-get install git build-essential
+$ sudo apt-get install git build-essential autoconf libtool
 $ cd /to/some/work/dir
-$ git clone git@github.com:AndyA/psips.git
+$ git clone git://github.com/AndyA/psips.git
 $ cd psips
 $ ./setup.sh && ./configure && make && make install
 ```
