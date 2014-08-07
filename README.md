@@ -23,7 +23,7 @@ to contain SPS and PPS NALs.
 By default it seems that raspivid only places SPS and PPS at the start
 of the stream. That means that when the stream is chopped up into chunks
 for HLS transfer only the first of them - which contains the SPS and PPS
-is playable.
+NALs - is playable.
 
 ## psips
 
