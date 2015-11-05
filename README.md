@@ -86,7 +86,7 @@ sleep 2
 
 # Need ffmpeg around 1.0.5 or later. The stock Debian ffmpeg won't work.
 # I'm not aware of options apart from building it from source. I have
-# Raspbian packags built from Debian Multimedia sources. Available on
+# Raspbian packages built from Debian Multimedia sources. Available on
 # request but I don't want to post them publicly because I haven't cross
 # compiled all of Debian Multimedia and conflicts can occur.
 ffmpeg -y \
