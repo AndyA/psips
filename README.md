@@ -45,7 +45,7 @@ $ sudo apt-get install git build-essential autoconf libtool
 $ cd /to/some/work/dir
 $ git clone git://github.com/AndyA/psips.git
 $ cd psips
-$ ./setup.sh && ./configure && make && make install
+$ ./setup.sh && ./configure && make && sudo make install
 ```
 
 You use it like this:
